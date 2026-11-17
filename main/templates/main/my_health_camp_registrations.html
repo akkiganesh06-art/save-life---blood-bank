@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Health Camp Registrations | Save Life</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #333;
+        }
+
+        header {
+            background: #c62828;
+            color: white;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #c62828, #ef5350);
+            color: white;
+            text-align: center;
+            padding: 45px 20px;
+        }
+
+        .hero h1 {
+            margin-bottom: 12px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .registration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 22px;
+        }
+
+        .registration-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+            border-top: 4px solid #c62828;
+        }
+
+        .registration-card h3 {
+            color: #c62828;
+            margin-bottom: 15px;
+        }
+
+        .detail {
+            margin: 12px 0;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .status {
+            display: inline-block;
+            background: #e8f5e9;
+            color: #256029;
+            padding: 7px 13px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 12px;
+        }
+
+        .empty {
+            background: white;
+            padding: 40px;
+            text-align: center;
+            border-radius: 12px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 11px 20px;
+            background: #c62828;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        footer {
+            background: #171717;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 60px;
+        }
+
+        @media(max-width: 600px) {
+            header {
+                padding: 18px 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h2>🩸 Save Life</h2>
+    <a href="{% url 'dashboard' %}">← Dashboard</a>
+</header>
+
+<section class="hero">
+    <h1>My Health Camp Registrations</h1>
+    <p>View the health camps you have registered for.</p>
+</section>
+
+<div class="container">
+
+    {% if registrations %}
+
+        <div class="registration-grid">
+
+            {% for registration in registrations %}
+
+                <div class="registration-card">
+
+                    <h3>🏥 {{ registration.camp.camp_name }}</h3>
+
+                    <div class="detail">
+                        <strong>Participant:</strong>
+                        {{ registration.participant_name }}
+                    </div>
+
+                    <div class="detail">
+                        <strong>Phone:</strong>
+                        {{ registration.phone }}
+                    </div>
+
+                    <div class="detail">
+                        <strong>Email:</strong>
+                        {{ registration.email }}
+                    </div>
+
+                    <div class="detail">
+                        <strong>Camp Date:</strong>
+                        {{ registration.camp.camp_date|date:"d M Y" }}
+                    </div>
+
+                    <div class="detail">
+                        <strong>Location:</strong>
+                        {{ registration.camp.location }}
+                    </div>
+
+                    <div class="detail">
+                        <strong>Registered On:</strong>
+                        {{ registration.registration_date|date:"d M Y, h:i A" }}
+                    </div>
+
+                    <span class="status">
+                        {{ registration.status }}
+                    </span>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="empty">
+            <h2>No Registrations Found</h2>
+
+            <p style="margin-top: 12px;">
+                You have not registered for any health camps yet.
+            </p>
+
+            <a href="{% url 'health_camps' %}" class="btn">
+                Explore Health Camps
+            </a>
+        </div>
+
+    {% endif %}
+
+</div>
+
+<footer>
+    <h2>❤️ Save Life</h2>
+    <p>Donate Blood • Help Others • Save Lives</p>
+    <p>© 2026 Save Life</p>
+</footer>
+
+</body>
+</html>

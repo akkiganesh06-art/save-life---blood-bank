@@ -1,0 +1,67 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Request Submitted | Save Life</title>
+
+    <link rel="stylesheet"
+          href="{% static 'main/css/style.css' %}">
+
+</head>
+
+<body class="success-page">
+
+
+<div class="success-container">
+
+    <div class="success-icon">
+        🚨
+    </div>
+
+    <span class="success-label">
+        EMERGENCY REQUEST
+    </span>
+
+    <h1>
+        Request Submitted
+    </h1>
+
+    <p>
+        Your emergency blood request has been submitted
+        successfully.
+    </p>
+
+    <p>
+        The request is now associated with your Save Life
+        account.
+    </p>
+
+
+    <div class="success-actions">
+
+        <a href="{% url 'blood_search' %}"
+           class="success-primary">
+            🩸 Find Blood
+        </a>
+
+        <a href="{% url 'dashboard' %}"
+           class="success-secondary">
+            ← Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+
+</body>
+
+</html>

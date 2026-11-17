@@ -1,0 +1,372 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Find Blood | Save Life</title>
+
+    <link rel="stylesheet"
+          href="{% static 'main/css/style.css' %}">
+
+</head>
+
+<body class="feature-page">
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="feature-navbar">
+
+    <a href="{% url 'dashboard' %}"
+       class="feature-logo">
+        ❤️ Save Life
+    </a>
+
+    <div class="feature-user">
+        👤 {{ user.username }}
+    </div>
+
+</header>
+
+
+<!-- =========================
+     PAGE HEADER
+========================= -->
+
+<section class="feature-header">
+
+    <span>
+        🩸 BLOOD SEARCH
+    </span>
+
+    <h1>
+        Find a Blood Donor
+    </h1>
+
+    <p>
+        Search for registered donors according to
+        blood group and location.
+    </p>
+
+</section>
+
+
+<!-- =========================
+     SEARCH FORM
+========================= -->
+
+<section class="search-section">
+
+    <form method="GET"
+          class="blood-search-form">
+
+
+        <div class="search-field">
+
+            <label>
+                Blood Group
+            </label>
+
+            <select name="blood_group">
+
+                <option value="">
+                    All Blood Groups
+                </option>
+
+                <option value="A+"
+                    {% if blood_group == "A+" %}selected{% endif %}>
+                    A+
+                </option>
+
+                <option value="A-"
+                    {% if blood_group == "A-" %}selected{% endif %}>
+                    A-
+                </option>
+
+                <option value="B+"
+                    {% if blood_group == "B+" %}selected{% endif %}>
+                    B+
+                </option>
+
+                <option value="B-"
+                    {% if blood_group == "B-" %}selected{% endif %}>
+                    B-
+                </option>
+
+                <option value="AB+"
+                    {% if blood_group == "AB+" %}selected{% endif %}>
+                    AB+
+                </option>
+
+                <option value="AB-"
+                    {% if blood_group == "AB-" %}selected{% endif %}>
+                    AB-
+                </option>
+
+                <option value="O+"
+                    {% if blood_group == "O+" %}selected{% endif %}>
+                    O+
+                </option>
+
+                <option value="O-"
+                    {% if blood_group == "O-" %}selected{% endif %}>
+                    O-
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="search-field">
+
+            <label>
+                State
+            </label>
+
+            <input
+                type="text"
+                name="state"
+                value="{{ state }}"
+                placeholder="Enter state"
+            >
+
+        </div>
+
+
+        <div class="search-field">
+
+            <label>
+                District
+            </label>
+
+            <input
+                type="text"
+                name="district"
+                value="{{ district }}"
+                placeholder="Enter district"
+            >
+
+        </div>
+
+
+        <div class="search-field">
+
+            <label>
+                City
+            </label>
+
+            <input
+                type="text"
+                name="city"
+                value="{{ city }}"
+                placeholder="Enter city"
+            >
+
+        </div>
+
+
+        <div class="emergency-filter">
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    name="emergency_only"
+                    value="yes"
+                    {% if emergency_only == "yes" %}checked{% endif %}
+                >
+
+                Available for Emergency
+
+            </label>
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="search-button">
+
+            🔍 Search Donors
+
+        </button>
+
+
+    </form>
+
+</section>
+
+
+<!-- =========================
+     RESULTS
+========================= -->
+
+<section class="results-section">
+
+    <div class="results-heading">
+
+        <div>
+
+            <span>
+                SEARCH RESULTS
+            </span>
+
+            <h2>
+                Available Donors
+            </h2>
+
+        </div>
+
+        <strong>
+            {{ total_donors }} donor{{ total_donors|pluralize }}
+        </strong>
+
+    </div>
+
+
+    {% if donors %}
+
+        <div class="donor-results">
+
+            {% for donor in donors %}
+
+                <div class="donor-result-card">
+
+                    <div class="donor-blood">
+
+                        {{ donor.blood_group }}
+
+                    </div>
+
+
+                    <div class="donor-information">
+
+                        <h3>
+                            {{ donor.full_name }}
+                        </h3>
+
+                        <p>
+                            📍 {{ donor.city }},
+                            {{ donor.district }},
+                            {{ donor.state }}
+                        </p>
+
+
+                        {% if donor.available_for_emergency %}
+
+                            <span class="available-badge">
+                                ✓ Available for Emergency
+                            </span>
+
+                        {% else %}
+
+                            <span class="unavailable-badge">
+                                Currently Unavailable
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="donor-action">
+
+                        
+<div class="donor-contact">
+
+    <span>📞 Donor Contact</span>
+
+    {% if donor.phone %}
+
+        <form method="POST"
+              action="{% url 'request_donor_contact' donor.id %}">
+
+            {% csrf_token %}
+
+            <button type="submit"
+                    class="contact-donor-button">
+
+                Request Contact
+
+            </button>
+
+        </form>
+
+    {% else %}
+
+        <span>Contact information unavailable</span>
+
+    {% endif %}
+
+</div>
+
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+
+    {% else %}
+
+        <div class="no-results">
+
+            <div>
+                🔍
+            </div>
+
+            <h2>
+                No Donors Found
+            </h2>
+
+            <p>
+                We could not find a donor matching your
+                search criteria.
+            </p>
+
+            <p>
+                Try another blood group, state, district
+                or city.
+            </p>
+
+        </div>
+
+    {% endif %}
+
+</section>
+
+
+<!-- =========================
+     BOTTOM NAVIGATION
+========================= -->
+
+<div class="feature-bottom">
+
+    <a href="{% url 'dashboard' %}">
+        ← Back to Dashboard
+    </a>
+
+    <a href="{% url 'donor_register' %}">
+        Become a Donor →
+    </a>
+
+</div>
+
+
+</body>
+
+</html>

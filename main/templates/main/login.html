@@ -1,0 +1,185 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Login | Save Life</title>
+
+    <link rel="stylesheet"
+          href="{% static 'main/css/style.css' %}">
+
+</head>
+
+<body class="auth-page">
+
+    <div class="auth-container">
+
+        <div class="auth-logo">
+            ❤️ Save Life
+        </div>
+
+        <div class="auth-card">
+
+            <div class="auth-header">
+
+                <span>
+                    WELCOME BACK
+                </span>
+
+                <h1>
+                    Login to Save Life
+                </h1>
+
+                <p>
+                    Login to access your blood donation
+                    and emergency support dashboard.
+                </p>
+
+            </div>
+
+
+            {% if error %}
+
+                <div class="error-message">
+                    {{ error }}
+                </div>
+
+            {% endif %}
+
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                <div class="form-group">
+
+                    <label>
+                        Username
+                    </label>
+
+                    <input
+                        type="text"
+                        name="username"
+                        placeholder="Enter your username"
+                        required
+                    >
+
+                </div>
+               
+
+
+<div class="form-group">
+
+    <label for="password">Password</label>
+
+    <!-- Password input and eye button -->
+    <div style="position: relative; width: 100%;">
+
+        <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Enter your password"
+            required
+            style="width: 100%; padding-right: 55px; box-sizing: border-box;"
+        >
+
+        <button
+            type="button"
+            id="togglePassword"
+            aria-label="Show password"
+            style="
+                position: absolute;
+                right: 12px;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 35px;
+                height: 35px;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: transparent;
+                border: none;
+                box-shadow: none;
+                cursor: pointer;
+                font-size: 20px;
+                z-index: 10;
+            "
+        >👁</button>
+
+    </div>
+
+    <!-- Forgot Password link outside the input container -->
+    <p style="text-align: right; margin-top: 8px; margin-bottom: 0;">
+        <a href="{% url 'password_reset' %}"
+           style="color: #c62828; text-decoration: none;">
+            Forgot Password?
+        </a>
+    </p>
+
+</div>
+
+
+<!-- Login Submit Button -->
+<button type="submit" class="auth-button">
+    Login
+</button>
+
+<div class="auth-divider">
+    <span>OR</span>
+</div>
+
+
+            <p class="auth-bottom-text">
+
+                Don't have an account?
+
+                <a href="{% url 'signup' %}">
+                    Create Account
+                </a>
+
+            </p>
+
+
+            <a href="{% url 'home' %}"
+               class="back-home">
+                ← Back to Home
+            </a>
+
+        </div>
+
+    </div>
+
+
+<script>
+    const passwordInput = document.getElementById("password");
+    const togglePassword = document.getElementById("togglePassword");
+
+    togglePassword.addEventListener("click", function () {
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            togglePassword.textContent = "🙈";
+            togglePassword.setAttribute("aria-label", "Hide password");
+        } else {
+            passwordInput.type = "password";
+            togglePassword.textContent = "👁";
+            togglePassword.setAttribute("aria-label", "Show password");
+        }
+
+    });
+</script>
+
+
+</body>
+
+</html>

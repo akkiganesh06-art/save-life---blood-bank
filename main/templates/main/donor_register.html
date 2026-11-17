@@ -1,0 +1,90 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Become a Donor | Save Life</title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'main/css/style.css' %}"
+    >
+
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            ❤️ Save Life
+        </div>
+
+        <nav>
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="{% url 'donor_register' %}">
+                Become a Donor
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <section class="form-section">
+
+        <div class="form-container">
+
+            <h1>Become a Blood Donor</h1>
+
+            <p>
+                Register yourself as a donor and help save lives.
+            </p>
+
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+                <button
+                    type="submit"
+                    class="btn primary"
+                >
+                    Register as Donor
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+
+        <h3>❤️ Save Life</h3>
+
+        <p>
+            Donate Blood • Help Others • Save Lives
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

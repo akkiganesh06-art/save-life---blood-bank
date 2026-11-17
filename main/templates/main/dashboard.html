@@ -1,0 +1,416 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | Save Life</title>
+
+    <link rel="stylesheet"
+          href="{% static 'main/css/style.css' %}">
+
+</head>
+
+<body class="dashboard-page">
+
+
+<!-- =========================
+     DASHBOARD NAVBAR
+========================= -->
+
+<header class="dashboard-navbar">
+
+    <div class="dashboard-logo">
+        ❤️ Save Life
+    </div>
+
+    <div class="dashboard-user">
+
+        <span class="user-icon">
+            👤
+        </span>
+
+        <span>
+            {{ user.username }}
+        </span>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     DASHBOARD HERO
+========================= -->
+
+
+<main class="dashboard-main">
+
+    <section class="dashboard-welcome">
+
+        <div>
+
+            <span class="dashboard-label">
+                SAVE LIFE DASHBOARD
+            </span>
+
+            <h1>
+                Welcome, {{ user.username }}!
+            </h1>
+
+            <p>
+                Manage your blood donation activities,
+                find blood donors and get emergency support
+                from one place.
+            </p>
+
+        </div>
+
+        <!-- NEW CONTACT REQUEST NOTIFICATION -->
+
+        {% if pending_contact_count > 0 %}
+        <div style="
+            background: #fff3cd;
+            border: 1px solid #ffe69c;
+            color: #664d03;
+            padding: 16px 20px;
+            margin: 20px auto;
+            max-width: 1100px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        ">
+            <div>
+                <strong>New Contact Request!</strong>
+
+                <p style="margin: 5px 0 0;">
+                    You have {{ pending_contact_count }}
+                    pending contact request(s) waiting for your approval.
+                </p>
+            </div>
+
+            <a href="{% url 'received_contact_requests' %}"
+               style="
+                   background: #dc3545;
+                   color: white;
+                   padding: 10px 18px;
+                   border-radius: 6px;
+                   text-decoration: none;
+                   font-weight: bold;
+               ">
+                View Requests
+            </a>
+        </div>
+        {% endif %}
+    </section>
+
+
+
+
+    <!-- =========================
+         QUICK ACTIONS
+    ========================= -->
+
+    <section class="dashboard-section">
+
+        <div class="dashboard-section-heading">
+
+            <div>
+
+                <span>
+                    QUICK ACTIONS
+                </span>
+
+                <h2>
+                    What would you like to do?
+                </h2>
+
+            </div>
+
+        </div>
+             <!-- START DASHBOARD GRID -->
+    <div class="dashboard-grid">
+
+        <!-- 1. HEALTH CAMPS -->
+        <a href="{% url 'health_camps' %}" class="dashboard-card">
+            <div class="dashboard-card-icon">🏥</div>
+            <h3>Health Camps</h3>
+            <p>Discover free health camps, blood donation camps and healthcare services.</p>
+            <span class="card-arrow">→</span>
+        </a>
+
+        <!-- 2. MY HEALTH CAMP REGISTRATIONS -->
+        <a href="{% url 'my_health_camp_registrations' %}" class="dashboard-card">
+            <div class="dashboard-icon">📋</div>
+            <h3>My Health Camp Registrations</h3>
+            <p>View your registered health camps, participant details and registration status.</p>
+            <span class="dashboard-card-link">View My Registrations →</span>
+        </a>
+
+        <!-- 3. MY LAB BOOKINGS -->
+        <a href="{% url 'my_lab_bookings' %}" class="dashboard-card">
+            <div class="dashboard-card-icon">🧪</div>
+            <h3>My Lab Bookings</h3>
+            <p>View your booked lab tests, preferred dates and booking status.</p>
+            <span class="card-arrow">→</span>
+        </a>
+
+        <!-- 4. FIND BLOOD -->
+        <a href="{% url 'blood_search' %}" class="dashboard-card">
+            <div class="dashboard-icon">🩸</div>
+            <h3>Find Blood</h3>
+            <p>Search for blood donors by blood group and location.</p>
+            <span class="dashboard-card-link">Find Donors →</span>
+        </a>
+
+        <!-- 5. BECOME A DONOR -->
+        <a href="{% url 'donor_register' %}" class="dashboard-card">
+            <div class="dashboard-card-icon">❤️</div>
+            <h3>Become a Donor</h3>
+            <p>Register yourself as a blood donor and help someone in need.</p>
+            <span class="card-arrow">→</span>
+        </a>
+
+        <!-- 6. MY EMERGENCY REQUESTS -->
+        <a href="{% url 'my_emergency_requests' %}" class="dashboard-card">
+            <div class="dashboard-card-icon">📋</div>
+            <h3>My Emergency Requests</h3>
+            <p>View your submitted emergency blood requests.</p>
+            <span class="dashboard-card-link">View Requests →</span>
+        </a>
+
+        <!-- 7. MY PROFILE -->
+        <a href="{% url 'my_profile' %}" class="dashboard-card">
+            <div class="dashboard-card-icon">👤</div>
+            <h3>My Profile</h3>
+            <p>View and manage your Save Life account information.</p>
+            <span class="card-arrow">→</span>
+        </a>
+
+        <!-- 8. LAB TESTS -->
+        <a href="{% url 'lab_test_booking' %}" class="dashboard-card">
+            <div class="dashboard-icon">🧪</div>
+            <h3>Lab Tests</h3>
+            <p>Book laboratory tests and manage your test appointments.</p>
+            <span class="dashboard-card-link">Book a Test →</span>
+        </a>
+
+        <!-- 9. RECEIVED CONTACT REQUESTS -->
+        {% if donor_profile %}
+        <a href="{% url 'received_contact_requests' %}" class="dashboard-card">
+            <div class="dashboard-card-icon">📩</div>
+            <h3>Received Contact Requests</h3>
+            <p>View people requesting your contact details. Approve or reject their requests.</p>
+            <span class="card-arrow">→</span>
+        </a>
+        {% endif %}
+
+    </div>
+    <!-- END DASHBOARD GRID -->
+
+</section>
+<!-- END QUICK ACTIONS -->
+   
+
+
+    <!-- =========================
+         MY ACCOUNT
+    ========================= -->
+
+    <section id="profile"
+         class="account-section">
+
+    <div class="account-card">
+
+        <div class="account-icon">
+            👤
+        </div>
+
+        <div class="account-content">
+
+            <span>
+                MY ACCOUNT
+            </span>
+
+            <h2>
+                {{ user.username }}
+            </h2>
+
+            <p>
+                Email:
+                {{ user.email|default:"Email not added" }}
+            </p>
+
+
+            {% if donor_profile %}
+
+                <div class="profile-status">
+                    ✓ Donor Profile Registered
+                </div>
+
+
+                <div class="profile-details">
+
+                    <div>
+                        <strong>Blood Group</strong>
+                        <span>
+                            {{ donor_profile.blood_group }}
+                        </span>
+                    </div>
+
+                    <div>
+                        <strong>Phone</strong>
+                        <span>
+                            {{ donor_profile.phone }}
+                        </span>
+                    </div>
+
+                    <div>
+                        <strong>District</strong>
+                        <span>
+                            {{ donor_profile.district }}
+                        </span>
+                    </div>
+
+                    <div>
+                        <strong>City</strong>
+                        <span>
+                            {{ donor_profile.city }}
+                        </span>
+                    </div>
+
+                    <div>
+                        <strong>State</strong>
+                        <span>
+                            {{ donor_profile.state }}
+                        </span>
+                    </div>
+
+                    <div>
+                        <strong>Emergency Availability</strong>
+
+                        <span>
+
+                            {% if donor_profile.available_for_emergency %}
+                                Available
+                            {% else %}
+                                Not Available
+                            {% endif %}
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            {% else %}
+
+                <div class="profile-not-registered">
+
+                    <h3>
+                        Donor Profile Not Registered
+                    </h3>
+
+                    <p>
+                        You have created your Save Life account,
+                        but you have not registered as a blood donor yet.
+                    </p>
+
+                    <a href="{% url 'donor_register' %}">
+                        Register as Donor →
+                    </a>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</section>
+
+    <!-- =========================
+         COMING SOON
+    ========================= -->
+
+    <section id="coming-soon"
+             class="coming-section">
+
+        <div>
+
+            <span>
+                MORE SERVICES
+            </span>
+
+            <h2>
+                More Features Are Coming
+            </h2>
+
+            <p>
+                Lab test booking, home sample collection,
+                health camps and verified donor certificates
+                will be added to your Save Life account.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         LOGOUT
+    ========================= -->
+
+    <div class="dashboard-logout">
+
+        <a href="{% url 'home' %}"
+           class="dashboard-home-btn">
+            ← Home
+        </a>
+
+        <a href="{% url 'logout' %}"
+           class="logout-btn">
+            Logout
+        </a>
+
+    </div>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="dashboard-footer">
+
+    <h3>
+        ❤️ Save Life
+    </h3>
+
+    <p>
+        Donate Blood • Help Others • Save Lives
+    </p>
+
+    <p>
+        © 2026 Save Life
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>
+
+

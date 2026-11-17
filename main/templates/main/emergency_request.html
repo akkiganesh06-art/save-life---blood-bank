@@ -1,0 +1,350 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Emergency Blood Request | Save Life</title>
+
+    <link rel="stylesheet"
+          href="{% static 'main/css/style.css' %}">
+
+</head>
+
+<body class="feature-page">
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="feature-navbar">
+
+    <a href="{% url 'dashboard' %}"
+       class="feature-logo">
+        ❤️ Save Life
+    </a>
+
+    <div class="feature-user">
+        👤 {{ user.username }}
+    </div>
+
+</header>
+
+
+<!-- =========================
+     PAGE HEADER
+========================= -->
+
+<section class="feature-header emergency-page-header">
+
+    <span>
+        🚨 EMERGENCY BLOOD SUPPORT
+    </span>
+
+    <h1>
+        Request Blood Urgently
+    </h1>
+
+    <p>
+        Provide the required information so that
+        blood support can be arranged quickly.
+    </p>
+
+</section>
+
+
+<!-- =========================
+     EMERGENCY FORM
+========================= -->
+
+<section class="emergency-form-section">
+
+    <div class="emergency-warning">
+
+        <strong>
+            🚨 Important
+        </strong>
+
+        <p>
+            For serious medical emergencies, contact the
+            nearest hospital or emergency medical service
+            immediately. Save Life is intended to help
+            connect people with potential blood donors.
+        </p>
+
+    </div>
+
+
+    <div class="emergency-form-card">
+
+        <div class="form-title">
+
+            <span>
+                EMERGENCY REQUEST DETAILS
+            </span>
+
+            <h2>
+                Enter Patient Information
+            </h2>
+
+        </div>
+
+
+        {% if form.non_field_errors %}
+
+            <div class="error-message">
+
+                {{ form.non_field_errors }}
+
+            </div>
+
+        {% endif %}
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <div class="emergency-form-grid">
+
+
+                <!-- PATIENT -->
+
+                <div class="form-group">
+
+                    <label>
+                        Patient Name
+                    </label>
+
+                    {{ form.patient_name }}
+
+                    {% if form.patient_name.errors %}
+                        <small class="field-error">
+                            {{ form.patient_name.errors }}
+                        </small>
+                    {% endif %}
+
+                </div>
+
+
+                <!-- BLOOD GROUP -->
+
+                <div class="form-group">
+
+                    <label>
+                        Required Blood Group
+                    </label>
+
+                    {{ form.blood_group }}
+
+                    {% if form.blood_group.errors %}
+                        <small class="field-error">
+                            {{ form.blood_group.errors }}
+                        </small>
+                    {% endif %}
+
+                </div>
+
+
+                <!-- UNITS -->
+
+                <div class="form-group">
+
+                    <label>
+                        Units Required
+                    </label>
+
+                    {{ form.units_required }}
+
+                    {% if form.units_required.errors %}
+                        <small class="field-error">
+                            {{ form.units_required.errors }}
+                        </small>
+                    {% endif %}
+
+                </div>
+
+
+                <!-- REQUIRED DATE -->
+
+                <div class="form-group">
+
+                    <label>
+                        Required Date
+                    </label>
+
+                    {{ form.required_date }}
+
+                    {% if form.required_date.errors %}
+                        <small class="field-error">
+                            {{ form.required_date.errors }}
+                        </small>
+                    {% endif %}
+
+                </div>
+
+
+                <!-- STATE -->
+
+                <div class="form-group">
+
+                    <label>
+                        State
+                    </label>
+
+                    {{ form.state }}
+
+                    {% if form.state.errors %}
+                        <small class="field-error">
+                            {{ form.state.errors }}
+                        </small>
+                    {% endif %}
+
+                </div>
+
+
+                <!-- DISTRICT -->
+
+                <div class="form-group">
+
+                    <label>
+                        District
+                    </label>
+
+                    {{ form.district }}
+
+                    {% if form.district.errors %}
+                        <small class="field-error">
+                            {{ form.district.errors }}
+                        </small>
+                    {% endif %}
+
+                </div>
+
+
+                <!-- CITY -->
+
+                <div class="form-group">
+
+                    <label>
+                        City
+                    </label>
+
+                    {{ form.city }}
+
+                    {% if form.city.errors %}
+                        <small class="field-error">
+                            {{ form.city.errors }}
+                        </small>
+                    {% endif %}
+
+                </div>
+
+
+                <!-- HOSPITAL -->
+
+                <div class="form-group">
+
+                    <label>
+                        Hospital Name
+                    </label>
+
+                    {{ form.hospital_name }}
+
+                    {% if form.hospital_name.errors %}
+                        <small class="field-error">
+                            {{ form.hospital_name.errors }}
+                        </small>
+                    {% endif %}
+
+                </div>
+
+
+                <!-- CONTACT -->
+
+                <div class="form-group">
+
+                    <label>
+                        Contact Number
+                    </label>
+
+                    {{ form.contact_number }}
+
+                    {% if form.contact_number.errors %}
+                        <small class="field-error">
+                            {{ form.contact_number.errors }}
+                        </small>
+                    {% endif %}
+
+                </div>
+
+
+                <!-- MESSAGE -->
+
+                <div class="form-group full-width">
+
+                    <label>
+                        Emergency Message
+                    </label>
+
+                    {{ form.emergency_message }}
+
+                    {% if form.emergency_message.errors %}
+                        <small class="field-error">
+                            {{ form.emergency_message.errors }}
+                        </small>
+                    {% endif %}
+
+                </div>
+
+
+            </div>
+
+
+            <div class="emergency-submit-area">
+
+                <button
+                    type="submit"
+                    class="emergency-submit">
+
+                    🚨 Submit Emergency Request
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     BOTTOM LINKS
+========================= -->
+
+<div class="feature-bottom">
+
+    <a href="{% url 'dashboard' %}">
+        ← Back to Dashboard
+    </a>
+
+    <a href="{% url 'blood_search' %}">
+        Find Blood →
+    </a>
+
+</div>
+
+
+</body>
+
+</html>

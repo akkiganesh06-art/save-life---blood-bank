@@ -1,0 +1,743 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Save Life | Blood Donation & Emergency Support</title>
+
+    <link rel="stylesheet"
+          href="{% static 'main/css/style.css' %}">
+
+</head>
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+        ❤️ Save Life
+    </div>
+
+    <nav>
+
+        <a href="#about">
+            About
+        </a>
+
+        <a href="#donation">
+            Blood Donation
+        </a>
+
+        <a href="#how-it-works">
+            How It Works
+        </a>
+
+        <a href="#services">
+            Services
+        </a>
+
+        <a href="#faq">
+            FAQ
+        </a>
+
+        <a href="{% url 'login' %}"
+           class="login-btn">
+            Login
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- =========================
+     HERO SECTION
+========================= -->
+
+<section class="home-hero">
+
+    <div class="home-hero-content">
+
+        <div class="hero-text">
+
+            <span class="hero-label">
+                🩸 BLOOD DONATION & EMERGENCY SUPPORT
+            </span>
+
+            <h1>
+                Donate Blood.
+                <br>
+                Save a Life.
+            </h1>
+
+            <p>
+                Save Life is a platform that connects blood donors
+                with people who need blood during emergencies.
+                Together, we can make finding blood faster,
+                easier and more reliable.
+            </p>
+
+            <a href="{% url 'login' %}"
+               class="btn primary">
+                Get Started
+            </a>
+
+        </div>
+
+
+        <div class="hero-blood-card">
+
+            <div class="blood-drop">
+                🩸
+            </div>
+
+            <h2>
+                One Donation
+            </h2>
+
+            <p>
+                Your small contribution can become
+                someone's hope for life.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT SAVE LIFE
+========================= -->
+
+<section id="about"
+         class="info-section">
+
+    <div class="section-heading">
+
+        <span>
+            ABOUT SAVE LIFE
+        </span>
+
+        <h2>
+            Connecting People When Every Second Matters
+        </h2>
+
+    </div>
+
+
+    <div class="about-content">
+
+        <div>
+
+            <p>
+                Save Life is a blood donation and emergency
+                support platform designed to help people find
+                blood donors when they need blood urgently.
+            </p>
+
+            <p>
+                During accidents, surgeries, medical treatments
+                and other emergencies, finding the right blood
+                group quickly can be difficult. Save Life aims
+                to make this process easier by connecting
+                donors and people in need.
+            </p>
+
+            <p>
+                Users can create an account, maintain their
+                personal information, register as blood donors,
+                search for blood and submit emergency requests.
+            </p>
+
+        </div>
+
+
+        <div class="info-highlight">
+
+            <div>
+                <strong>🩸</strong>
+                <span>
+                    Find Blood
+                </span>
+            </div>
+
+            <div>
+                <strong>❤️</strong>
+                <span>
+                    Become a Donor
+                </span>
+            </div>
+
+            <div>
+                <strong>🚨</strong>
+                <span>
+                    Emergency Support
+                </span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     BLOOD DONATION
+========================= -->
+
+<section id="donation"
+         class="donation-section">
+
+    <div class="section-heading">
+
+        <span>
+            BLOOD DONATION
+        </span>
+
+        <h2>
+            Why Is Blood Donation Important?
+        </h2>
+
+        <p>
+            Blood cannot be manufactured. It can only come
+            from generous donors.
+        </p>
+
+    </div>
+
+
+    <div class="donation-cards">
+
+        <div class="information-card">
+
+            <div class="card-icon">
+                ❤️
+            </div>
+
+            <h3>
+                Save Lives
+            </h3>
+
+            <p>
+                Donated blood can help patients during
+                accidents, surgeries and serious illnesses.
+            </p>
+
+        </div>
+
+
+        <div class="information-card">
+
+            <div class="card-icon">
+                🚑
+            </div>
+
+            <h3>
+                Emergency Support
+            </h3>
+
+            <p>
+                Blood availability is especially important
+                during emergency situations when every
+                minute matters.
+            </p>
+
+        </div>
+
+
+        <div class="information-card">
+
+            <div class="card-icon">
+                🏥
+            </div>
+
+            <h3>
+                Support Hospitals
+            </h3>
+
+            <p>
+                Regular blood donation helps maintain
+                adequate blood supplies for hospitals.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     WHO CAN DONATE
+========================= -->
+
+<section class="eligibility-section">
+
+    <div class="section-heading">
+
+        <span>
+            DONOR AWARENESS
+        </span>
+
+        <h2>
+            Who Can Donate Blood?
+        </h2>
+
+    </div>
+
+
+    <div class="eligibility-content">
+
+        <div class="eligibility-list">
+
+            <div>
+                ✓ Generally healthy individuals
+            </div>
+
+            <div>
+                ✓ People meeting the required age criteria
+            </div>
+
+            <div>
+                ✓ People who meet the required health criteria
+            </div>
+
+            <div>
+                ✓ People who pass the blood donation screening
+            </div>
+
+        </div>
+
+
+        <div class="eligibility-note">
+
+            <h3>
+                Important
+            </h3>
+
+            <p>
+                Blood donation eligibility can depend on
+                age, health, medicines, medical history and
+                local blood-bank rules. Always follow the
+                screening advice of a qualified healthcare
+                professional or blood bank.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     HOW IT WORKS
+========================= -->
+
+<section id="how-it-works"
+         class="how-section">
+
+    <div class="section-heading">
+
+        <span>
+            HOW SAVE LIFE WORKS
+        </span>
+
+        <h2>
+            Simple. Fast. Connected.
+        </h2>
+
+    </div>
+
+
+    <div class="steps-container">
+
+        <div class="step-card">
+
+            <div class="step-number">
+                01
+            </div>
+
+            <h3>
+                Create Account
+            </h3>
+
+            <p>
+                Create your Save Life account and
+                provide your basic information.
+            </p>
+
+        </div>
+
+
+        <div class="step-card">
+
+            <div class="step-number">
+                02
+            </div>
+
+            <h3>
+                Complete Profile
+            </h3>
+
+            <p>
+                Add your location, blood group and
+                other important details.
+            </p>
+
+        </div>
+
+
+        <div class="step-card">
+
+            <div class="step-number">
+                03
+            </div>
+
+            <h3>
+                Find or Donate Blood
+            </h3>
+
+            <p>
+                Search for donors or register yourself
+                as a blood donor.
+            </p>
+
+        </div>
+
+
+        <div class="step-card">
+
+            <div class="step-number">
+                04
+            </div>
+
+            <h3>
+                Help Save a Life
+            </h3>
+
+            <p>
+                Connect with people and help during
+                emergency blood requirements.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SERVICES
+========================= -->
+
+<section id="services"
+         class="services-section">
+
+    <div class="section-heading">
+
+        <span>
+            OUR SERVICES
+        </span>
+
+        <h2>
+            Everything in One Platform
+        </h2>
+
+        <p>
+            Save Life is designed to bring important
+            healthcare and blood-related services together.
+        </p>
+
+    </div>
+
+
+    <div class="services-grid">
+
+        <div class="service-box">
+
+            <span>🩸</span>
+
+            <h3>
+                Blood Search
+            </h3>
+
+            <p>
+                Search for donors according to blood group
+                and location.
+            </p>
+
+        </div>
+
+
+        <div class="service-box">
+
+            <span>❤️</span>
+
+            <h3>
+                Donor Registration
+            </h3>
+
+            <p>
+                Register as a donor and make your
+                availability known.
+            </p>
+
+        </div>
+
+
+        <div class="service-box">
+
+            <span>🚨</span>
+
+            <h3>
+                Emergency Request
+            </h3>
+
+            <p>
+                Submit an urgent request when blood
+                is required.
+            </p>
+
+        </div>
+
+
+        <div class="service-box">
+
+            <span>🧪</span>
+
+            <h3>
+                Lab Test Booking
+            </h3>
+
+            <p>
+                Book laboratory tests through the
+                Save Life platform.
+            </p>
+
+        </div>
+
+
+        <div class="service-box">
+
+            <span>🏠</span>
+
+            <h3>
+                Home Sample Collection
+            </h3>
+
+            <p>
+                Schedule convenient home sample
+                collection services.
+            </p>
+
+        </div>
+
+
+        <div class="service-box">
+
+            <span>🏕️</span>
+
+            <h3>
+                Health Camps
+            </h3>
+
+            <p>
+                Discover health camps and community
+                healthcare activities.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     EMERGENCY INFORMATION
+========================= -->
+
+<section class="emergency-information">
+
+    <div>
+
+        <span>
+            🚨 EMERGENCY BLOOD SUPPORT
+        </span>
+
+        <h2>
+            When Every Second Matters
+        </h2>
+
+        <p>
+            In an emergency, finding the required blood group
+            quickly can be extremely important. Save Life aims
+            to help users search for available donors and
+            submit emergency blood requests through one
+            connected platform.
+        </p>
+
+        <a href="{% url 'login' %}"
+           class="btn emergency">
+            Login to Get Started
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FAQ
+========================= -->
+
+<section id="faq"
+         class="faq-section">
+
+    <div class="section-heading">
+
+        <span>
+            FAQ
+        </span>
+
+        <h2>
+            Frequently Asked Questions
+        </h2>
+
+    </div>
+
+
+    <div class="faq-container">
+
+        <details>
+
+            <summary>
+                Why should I donate blood?
+            </summary>
+
+            <p>
+                Blood donation helps maintain blood supplies
+                and can support patients who need blood during
+                emergencies, surgeries and medical treatments.
+            </p>
+
+        </details>
+
+
+        <details>
+
+            <summary>
+                How does Save Life help?
+            </summary>
+
+            <p>
+                Save Life connects registered users and donors
+                so that people can search for blood and submit
+                emergency requests more easily.
+            </p>
+
+        </details>
+
+
+        <details>
+
+            <summary>
+                Can I register as a donor?
+            </summary>
+
+            <p>
+                Yes. After creating an account and logging in,
+                you will be able to complete your donor
+                registration.
+            </p>
+
+        </details>
+
+
+        <details>
+
+            <summary>
+                Can I request blood during an emergency?
+            </summary>
+
+            <p>
+                Yes. Logged-in users will be able to submit
+                emergency blood requests through their dashboard.
+            </p>
+
+        </details>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FINAL CTA
+========================= -->
+
+<section class="final-cta">
+
+    <h2>
+        Be Someone's Reason to Live.
+    </h2>
+
+    <p>
+        Create your Save Life account and become part
+        of a community that helps people when they need
+        it most.
+    </p>
+
+    <a href="{% url 'login' %}"
+       class="btn primary">
+        Login to Save Life
+    </a>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <h3>
+        ❤️ Save Life
+    </h3>
+
+    <p>
+        Donate Blood • Help Others • Save Lives
+    </p>
+
+    <p>
+        Blood Donation & Emergency Support Platform
+    </p>
+
+    <p>
+        © 2026 Save Life
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>

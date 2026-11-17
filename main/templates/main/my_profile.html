@@ -1,0 +1,130 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Save Life</title>
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+</head>
+<body>
+
+<nav class="feature-navbar">
+    <div class="feature-logo">❤️ Save Life</div>
+    <div class="feature-user">👤 {{ user.username }}</div>
+</nav>
+
+<main class="feature-page">
+    <section class="emergency-history-header">
+        <span class="section-label">MY ACCOUNT</span>
+        <h1>My Profile</h1>
+        <p>View your account and donor registration details.</p>
+    </section>
+
+    <section class="request-history-section">
+        <div class="request-history-card">
+
+            <h2>Account Information</h2>
+
+            <div class="request-details-grid">
+                <div class="request-detail">
+                    <span>Username</span>
+                    <strong>{{ user.username }}</strong>
+                </div>
+
+                <div class="request-detail">
+                    <span>Email</span>
+                    <strong>{{ user.email|default:"Not provided" }}</strong>
+                </div>
+            </div>
+
+            <hr style="margin: 25px 0;">
+
+            <h2>Donor Profile</h2>
+
+            {% if donor_profile %}
+                <p class="profile-status">✓ Donor profile registered</p>
+
+                <div class="request-details-grid">
+                    <div class="request-detail">
+                        <span>Full Name</span>
+                        <strong>{{ donor_profile.full_name }}</strong>
+                    </div>
+
+                    <div class="request-detail">
+                        <span>Blood Group</span>
+                        <strong>{{ donor_profile.blood_group }}</strong>
+                    </div>
+
+                    <div class="request-detail">
+                        <span>Phone</span>
+                        <strong>{{ donor_profile.phone }}</strong>
+                    </div>
+
+                    <div class="request-detail">
+                        <span>Age</span>
+                        <strong>{{ donor_profile.age }}</strong>
+                    </div>
+
+                    <div class="request-detail">
+                        <span>State</span>
+                        <strong>{{ donor_profile.state }}</strong>
+                    </div>
+
+                    <div class="request-detail">
+                        <span>District</span>
+                        <strong>{{ donor_profile.district }}</strong>
+                    </div>
+
+                    <div class="request-detail">
+                        <span>City</span>
+                        <strong>{{ donor_profile.city }}</strong>
+                    </div>
+
+                    <div class="request-detail">
+                        <span>Emergency Availability</span>
+                        <strong>
+                            {% if donor_profile.available_for_emergency %}
+                                Available
+                            {% else %}
+                                Not Available
+                            {% endif %}
+                        </strong>
+                    </div>
+                </div>
+<div class="feature-bottom-actions">
+
+    <a href="{% url 'edit_donor_profile' %}"
+       class="primary-action-button">
+        ✏️ Edit Donor Profile
+    </a>
+
+</div>
+            {% else %}
+                <p>You have not registered as a blood donor yet.</p>
+
+                <a href="{% url 'donor_register' %}"
+                   class="primary-action-button">
+                    Register as a Donor
+                </a>
+            {% endif %}
+
+        </div>
+
+        <div class="feature-bottom-actions">
+            <a href="{% url 'dashboard' %}"
+               class="secondary-action-button">
+                ← Back to Dashboard
+            </a>
+        </div>
+    </section>
+</main>
+
+<footer class="feature-footer">
+    <p>❤️ Save Life — Donate Blood, Save Lives</p>
+</footer>
+
+</body>
+</html>
+

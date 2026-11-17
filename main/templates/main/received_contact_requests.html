@@ -1,0 +1,194 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Received Contact Requests | Save Life</title>
+
+    <link rel="stylesheet"
+          href="{% static 'main/css/style.css' %}">
+
+</head>
+
+<body class="feature-page">
+
+<header class="feature-navbar">
+
+    <a href="{% url 'dashboard' %}" class="feature-logo">
+        ❤️ Save Life
+    </a>
+
+    <div class="feature-user">
+        👤 {{ user.username }}
+    </div>
+
+</header>
+
+
+<section class="feature-header">
+
+    <span>📞 DONOR REQUESTS</span>
+
+    <h1>Received Contact Requests</h1>
+
+    <p>
+        Review requests from people who want to contact you.
+        You decide whether to share your phone number.
+    </p>
+
+</section>
+
+
+<section class="results-section">
+
+    <div class="results-heading">
+
+        <div>
+            <span>REQUEST MANAGEMENT</span>
+            <h2>Contact Requests</h2>
+        </div>
+
+        <strong>
+            {{ contact_requests|length }} request{{ contact_requests|length|pluralize }}
+        </strong>
+
+    </div>
+
+
+    {% if messages %}
+        {% for message in messages %}
+            <p class="form-message">
+                {{ message }}
+            </p>
+        {% endfor %}
+    {% endif %}
+
+
+    {% if contact_requests %}
+
+        <div class="donor-results">
+
+            {% for item in contact_requests %}
+
+                <div class="donor-result-card">
+
+                    <div class="donor-blood">
+                        {{ item.donor.blood_group }}
+                    </div>
+
+                    <div class="donor-information">
+
+                        <h3>
+                            {{ item.requester.username }}
+                        </h3>
+
+                        <p>
+                            Request Date:
+                            {{ item.created_at|date:"d M Y" }}
+                        </p>
+
+                        <p>
+                            Status:
+                            <strong>{{ item.get_status_display }}</strong>
+                        </p>
+
+                        {% if item.status == 'Pending' %}
+
+                            <p>
+                                This user is requesting permission
+                                to contact you.
+                            </p>
+
+                            <div class="donor-contact">
+
+                                <form method="POST"
+                                      action="{% url 'update_contact_request' item.id %}">
+
+                                    {% csrf_token %}
+
+                                    <button type="submit"
+                                            name="action"
+                                            value="approve"
+                                            class="contact-donor-button">
+
+                                        ✓ Approve
+
+                                    </button>
+
+                                    <button type="submit"
+                                            name="action"
+                                            value="reject"
+                                            class="contact-donor-button">
+
+                                        ✕ Reject
+
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+                        {% elif item.status == 'Approved' %}
+
+                            <p>
+                                You approved this contact request.
+                            </p>
+
+                        {% elif item.status == 'Rejected' %}
+
+                            <p>
+                                You rejected this contact request.
+                            </p>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="no-results">
+
+            <div>📭</div>
+
+            <h2>No Requests Received</h2>
+
+            <p>
+                You have not received any contact requests yet.
+            </p>
+
+        </div>
+
+    {% endif %}
+
+</section>
+
+
+<div class="feature-bottom">
+
+    <a href="{% url 'dashboard' %}">
+        ← Back to Dashboard
+    </a>
+
+    <a href="{% url 'blood_search' %}">
+        Find Blood →
+    </a>
+
+</div>
+
+</body>
+</html>
+

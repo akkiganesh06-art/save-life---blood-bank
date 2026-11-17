@@ -1,0 +1,103 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Signup | Save Life</title>
+
+    <link rel="stylesheet"
+          href="{% static 'main/css/style.css' %}">
+
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            ❤️ Save Life
+        </div>
+
+        <nav>
+
+            <a href="/">Home</a>
+
+            <a href="{% url 'blood_search' %}">
+                Blood Search
+            </a>
+
+            <a href="{% url 'donor_register' %}">
+                Become a Donor
+            </a>
+
+            <a href="{% url 'emergency_request' %}">
+                Emergency
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <section class="form-section">
+
+        <div class="form-container">
+
+            <h1>Create Account</h1>
+
+            <p>
+                Create your Save Life account.
+            </p>
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+                <button type="submit"
+                        class="btn primary">
+                    Create Account
+                </button>
+
+            </form>
+
+            <p style="margin-top:20px;">
+
+                Already have an account?
+
+                <a href="{% url 'login' %}">
+    Login
+</a>
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+
+        <h3>❤️ Save Life</h3>
+
+        <p>
+            Donate Blood • Help Others • Save Lives
+        </p>
+
+        <p>
+            © 2026 Save Life Blood Donation Website
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

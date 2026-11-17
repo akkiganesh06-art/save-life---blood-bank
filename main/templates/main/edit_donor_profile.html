@@ -1,0 +1,96 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Donor Profile - Save Life</title>
+
+    <link rel="stylesheet"
+          href="{% static 'main/css/style.css' %}">
+</head>
+
+<body>
+
+    <nav class="feature-navbar">
+        <div class="feature-logo">❤️ Save Life</div>
+        <div class="feature-user">👤 {{ user.username }}</div>
+    </nav>
+
+    <main class="feature-page">
+
+        <section class="emergency-history-header">
+
+            <span class="section-label">MY ACCOUNT</span>
+
+            <h1>Edit Donor Profile</h1>
+
+            <p>Update your donor information below.</p>
+
+        </section>
+
+        <section class="request-history-section">
+
+            <div class="request-history-card">
+
+                <form method="POST">
+                    {% csrf_token %}
+
+                    {% if form.non_field_errors %}
+                        <div class="form-errors">
+                            {{ form.non_field_errors }}
+                        </div>
+                    {% endif %}
+
+                    <div class="edit-profile-form">
+
+                        {% for field in form %}
+                                                    <div class="form-group">
+
+                                <label for="{{ field.id_for_label }}">
+                                    {{ field.label }}
+                                </label>
+
+                                {{ field }}
+
+                                {% if field.errors %}
+                                    <div class="form-errors">
+                                        {{ field.errors }}
+                                    </div>
+                                {% endif %}
+
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                    <button type="submit" class="primary-action-button">
+                        Save Changes
+                    </button>
+
+                    <a href="{% url 'my_profile' %}"
+                       class="secondary-action-button">
+                        Cancel
+                    </a>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="feature-footer">
+        <p>❤️ Save Life — Donate Blood, Save Lives</p>
+    </footer>
+
+</body>
+
+</html>

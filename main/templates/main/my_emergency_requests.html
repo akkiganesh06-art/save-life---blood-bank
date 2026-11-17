@@ -1,0 +1,253 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Emergency Requests - Save Life</title>
+
+    <link rel="stylesheet"
+          href="{% static 'main/css/style.css' %}">
+
+</head>
+
+<body>
+
+    <nav class="feature-navbar">
+
+        <div class="feature-logo">
+            ❤️ Save Life
+        </div>
+
+        <div class="feature-user">
+            👤 {{ user.username }}
+        </div>
+
+    </nav>
+
+
+    <main class="feature-page">
+
+        <section class="emergency-history-header">
+
+            <div>
+
+                <span class="section-label">
+                    MY ACCOUNT
+                </span>
+
+                <h1>
+                    My Emergency Requests
+                </h1>
+
+                <p>
+                    View the emergency blood requests submitted
+                    through your Save Life account.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <section class="request-history-section">
+
+            {% if requests %}
+
+                <div class="request-history-list">
+
+                    {% for request in requests %}
+
+                        <div class="request-history-card">
+
+                            <div class="request-card-top">
+
+                                <div>
+
+                                    <h2>
+                                        {{ request.patient_name }}
+                                    </h2>
+
+                                    <span class="blood-badge">
+                                        {{ request.blood_group }}
+                                    </span>
+
+                                </div>
+
+                                <span class="request-status status-{{ request.status|lower }}">
+    {{ request.get_status_display }}
+</span>
+
+                            </div>
+
+
+                            <div class="request-details-grid">
+
+                                <div class="request-detail">
+
+                                    <span>🩸 Blood Required</span>
+
+                                    <strong>
+                                        {{ request.blood_group }}
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="request-detail">
+
+                                    <span>📦 Units Required</span>
+
+                                    <strong>
+                                        {{ request.units_required }}
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="request-detail">
+
+                                    <span>🏥 Hospital</span>
+
+                                    <strong>
+                                        {{ request.hospital_name }}
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="request-detail">
+
+                                    <span>📞 Contact</span>
+
+                                    <strong>
+                                        {{ request.contact_number }}
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="request-detail">
+
+                                    <span>📅 Required Date</span>
+
+                                    <strong>
+                                        {{ request.required_date }}
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="request-detail">
+
+                                    <span>📍 Location</span>
+
+                                    <strong>
+                                        {{ request.city }},
+                                        {{ request.district }}
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+
+                            {% if request.emergency_message %}
+
+                                <div class="request-message">
+
+                                    <strong>
+                                        Emergency Details
+                                    </strong>
+
+                                    <p>
+                                        {{ request.emergency_message }}
+                                    </p>
+
+                                </div>
+
+                            {% endif %}
+
+
+                            <div class="request-created">
+
+                                Request submitted on
+                                {{ request.created_at|date:"d M Y, h:i A" }}
+
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <div class="no-requests">
+
+                    <div class="no-requests-icon">
+                        🚨
+                    </div>
+
+                    <h2>
+                        No Emergency Requests
+                    </h2>
+
+                    <p>
+                        You have not submitted any emergency
+                        blood request yet.
+                    </p>
+
+                    <a href="{% url 'emergency_request' %}"
+                       class="primary-action-button">
+
+                        Create Emergency Request
+
+                    </a>
+
+                </div>
+
+            {% endif %}
+
+        </section>
+
+
+        <div class="feature-bottom-actions">
+
+            <a href="{% url 'dashboard' %}"
+               class="secondary-action-button">
+
+                ← Back to Dashboard
+
+            </a>
+
+            <a href="{% url 'blood_search' %}"
+               class="primary-action-button">
+
+                Find Blood
+
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <footer class="feature-footer">
+
+        <p>
+            ❤️ Save Life — Donate Blood, Save Lives
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

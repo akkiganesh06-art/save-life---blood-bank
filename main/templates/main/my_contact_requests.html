@@ -1,0 +1,144 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Contact Requests | Save Life</title>
+
+    <link rel="stylesheet"
+          href="{% static 'main/css/style.css' %}">
+</head>
+
+<body class="feature-page">
+
+<header class="feature-navbar">
+
+    <a href="{% url 'dashboard' %}" class="feature-logo">
+        ❤️ Save Life
+    </a>
+
+    <div class="feature-user">
+        👤 {{ user.username }}
+    </div>
+
+</header>
+
+<section class="feature-header">
+
+    <span>📞 CONTACT REQUESTS</span>
+
+    <h1>My Contact Requests</h1>
+
+    <p>
+        Check whether donors have approved your contact requests.
+    </p>
+
+</section>
+
+<section class="results-section">
+
+    {% if contact_requests %}
+
+        <div class="donor-results">
+
+            {% for item in contact_requests %}
+
+                <div class="donor-result-card">
+
+                    <div class="donor-blood">
+                        {{ item.donor.blood_group }}
+                    </div>
+
+                    <div class="donor-information">
+
+                        <h3>{{ item.donor.full_name }}</h3>
+
+                        <p>
+                            📍 {{ item.donor.city }},
+                            {{ item.donor.district }},
+                            {{ item.donor.state }}
+                        </p>
+
+                        <p>
+                            Request Date:
+                            {{ item.created_at|date:"d M Y" }}
+                        </p>
+
+                        <p>
+                            Status:
+                            <strong>{{ item.get_status_display }}</strong>
+                        </p>
+
+                        
+{% if item.status == 'Approved' %}
+
+    <p>
+        📞 Donor Phone:
+        <strong>{{ item.donor.phone }}</strong>
+    </p>
+
+{% elif item.status == 'Pending' %}
+
+    <p>
+        📞 Donor Phone:
+        <strong>Hidden until donor approves your request.</strong>
+    </p>
+
+{% elif item.status == 'Rejected' %}
+
+    <p>
+        📞 Donor Phone:
+        <strong>Not available. The donor rejected your request.</strong>
+    </p>
+
+{% endif %}
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="no-results">
+
+            <div>📭</div>
+
+            <h2>No Contact Requests Yet</h2>
+
+            <p>
+                You have not sent any donor contact requests.
+            </p>
+
+            <a href="{% url 'blood_search' %}">
+                Search for Donors
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</section>
+
+<div class="feature-bottom">
+
+    <a href="{% url 'dashboard' %}">
+        ← Back to Dashboard
+    </a>
+
+    <a href="{% url 'blood_search' %}">
+        Find Blood →
+    </a>
+
+</div>
+
+</body>
+</html>
